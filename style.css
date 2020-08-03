@@ -67,6 +67,7 @@ a {
 
 body {
   font-family: "Ruhl", sans-serif;
+  animation: opening 1s ease-in-out;
 }
 h1 {
   font-family: "Vibes", sans-serif;
@@ -112,6 +113,7 @@ nav {
 }
 .hero-introduction p {
   padding: 5rem 10rem;
+  color: var(--gray-text);
 }
 .hero-introduction h2 {
   padding-top: 3rem;
@@ -137,7 +139,160 @@ nav {
   bottom: 0;
   left: -20%;
   z-index: -1;
+  transform: translateY(10%) rotateZ(-10deg) rotateX(-90deg);
+  animation: plant-entrance 1.5s ease-in-out 0.5s forwards,
+    plant-wiggle 2.5s infinite ease alternate-reverse 2s;
+  transform-origin: bottom;
+  max-height: 80%;
 }
 .plant2 {
   left: 40%;
+}
+/* Animations */
+
+@keyframes opening {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes plant-entrance {
+  from {
+    transform: translateY(10%) rotateZ(-10deg) rotateX(-90deg);
+  }
+  to {
+    transform: translateY(0%) rotateZ(0deg) rotateX(0deg);
+  }
+}
+@keyframes plant-wiggle {
+  from {
+    transform: rotateZ(-5deg);
+  }
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+
+.burger,
+.menu-check {
+  display: none;
+}
+
+/* About Section */
+
+#about {
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+.about-text {
+  flex: 2 1 40rem;
+  justify-content: space-around;
+  background: var(--background-color);
+  color: white;
+}
+.about-text div {
+  padding: 3rem 8rem;
+}
+.about-text h3 {
+  padding: 2rem 0rem;
+  font-family: "Ruhl Medium";
+}
+.about-text h2 {
+  font-family: "Vibes";
+  padding: 4rem;
+}
+
+.about-image {
+  flex: 1 1 40rem;
+
+  position: relative;
+}
+.about-image h5 {
+  position: absolute;
+  letter-spacing: 2rem;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+}
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Media */
+
+@media screen and (max-width: 842px) {
+  .hero {
+    width: 100%;
+  }
+  .hero-introduction {
+    padding: 5rem 3rem;
+  }
+
+  /* burger thing */
+  .burger {
+    position: relative;
+    display: block;
+  }
+  .burger span {
+    padding: 0.2rem 2rem;
+    background: var(--gray-text);
+    margin: 0.5rem 0rem;
+    display: block;
+    transition: all 0.5s ease;
+  }
+  .nav-links a {
+    color: white;
+    font-size: var(--header3);
+    text-decoration: underline;
+  }
+  .nav-links {
+    background: var(--background-color);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 1s ease;
+  }
+  .menu-check {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translate(5%, -50%);
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 100;
+  }
+
+  .menu-check:checked + .nav-links {
+    transform: translate(-100%);
+  }
+  .menu-check:checked ~ .burger span {
+    background: white;
+  }
+
+  .menu-check:checked ~ .burger span:nth-child(1) {
+    transform: rotateZ(45deg) translateY(300%);
+  }
+  .menu-check:checked ~ .burger span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-check:checked ~ .burger span:nth-child(3) {
+    transform: rotateZ(-45deg) translateY(-300%);
+  }
+
+  /*About Section */
+
+  .about-text div {
+    padding: 3rem 3rem;
+  }
 }
