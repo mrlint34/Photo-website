@@ -24,10 +24,11 @@ html {
   --header3: calc(4rem + 1vw);
   --header4: calc(2.4rem + 1vw);
   --text: calc(1.5rem + 1vw);
-  --big: calc(2.4rem + 1vw);
+  --big: calc(6rem + 1vw);
   --special-color: #906272;
   --background-color: #414141;
   --gray-text: #525252;
+  scroll-behavior: smooth;
 }
 h1 {
   font-size: var(--header1);
@@ -222,6 +223,89 @@ nav {
   height: 100%;
   object-fit: cover;
 }
+
+/*Gallery */
+
+.gallery {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+}
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery1 {
+  grid-column: 1/3;
+}
+.gallery2 {
+  grid-column: 3/4;
+  grid-row: 1/3;
+}
+
+/*Contract*/
+
+#contact {
+  min-height: 90vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+.form-wrapper {
+  flex: 3 1 40rem;
+}
+.form-wrapper h2 {
+  margin: 5rem 0rem;
+}
+
+.form-wrapper span {
+  font-size: var(--big);
+  color: var(--special-color);
+}
+.form-wrapper label {
+  display: block;
+}
+.form-wrapper input {
+  display: block;
+  margin: 3rem 0rem;
+  background: var(--background-color);
+  color: white;
+  border: none;
+  padding: 1rem;
+}
+.form-wrapper button {
+  padding: 1rem 8rem;
+  background: var(--special-color);
+  border: none;
+  color: white;
+  width: 100%;
+}
+#contact img {
+  flex: 1 1 40rem;
+}
+
+/*footer*/
+
+footer {
+  background: var(--background-color);
+  color: white;
+  display: flex;
+  padding: 3rem 5%;
+  align-items: center;
+  flex-wrap: wrap;
+}
+footer ul {
+  display: flex;
+  flex: 1 1 40rem;
+  justify-content: space-between;
+  align-items: center;
+}
+footer h4 {
+  flex: 4 1 40rem;
+  font-size: calc(1.4rem + 1vw);
+  font-family: "Vibes";
+}
 /* Media */
 
 @media screen and (max-width: 842px) {
@@ -236,6 +320,7 @@ nav {
   .burger {
     position: relative;
     display: block;
+    cursor: pointer;
   }
   .burger span {
     padding: 0.2rem 2rem;
@@ -260,7 +345,21 @@ nav {
     align-items: center;
     transition: transform 1s ease;
   }
-  .menu-check {
+  .nav-open {
+    transform: translate(-100%);
+  }
+  .toggle .line1 {
+    transform: rotateZ(45deg) translateY(300%);
+    background: white;
+  }
+  .toggle .line2 {
+    opacity: 0;
+  }
+  .toggle .line3 {
+    transform: rotateZ(-45deg) translateY(-300%);
+    background: white;
+  }
+  /*.menu-check {
     display: block;
     position: absolute;
     top: 50%;
@@ -271,7 +370,7 @@ nav {
     cursor: pointer;
     opacity: 0;
     z-index: 100;
-  }
+  } used for making nav burger w/ css replaced with javascript
 
   .menu-check:checked + .nav-links {
     transform: translate(-100%);
@@ -288,11 +387,42 @@ nav {
   }
   .menu-check:checked ~ .burger span:nth-child(3) {
     transform: rotateZ(-45deg) translateY(-300%);
-  }
+  } */
 
   /*About Section */
 
   .about-text div {
     padding: 3rem 3rem;
+  }
+  /*gallery*/
+
+  .gallery img {
+    grid-row: auto;
+    grid-column: auto;
+  }
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  }
+  #contact img {
+    display: none;
+  }
+  footer ul {
+    order: 1;
+  }
+  footer h4 {
+    order: 2;
+    text-align: center;
+    padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  html {
+    --header1: 3rem;
+    --header2: 5rem;
+    --header3: 3.5rem;
+    --header4: 3.5rem;
+    --text: 2.5rem;
+    --big: 8rem;
   }
 }
